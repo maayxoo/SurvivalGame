@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 4.0f;
 
     public Transform attackPoint;
-    public float attackRange = 0.3f;
+    public float attackRange = 1f;
     public LayerMask enemyLayers;
     public LayerMask foodLayer;
 
@@ -25,10 +25,11 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
 
     private InputAction moveAction;
-    private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction shootAction;
     private InputAction actionAction;
+
+
 
 
     private void Awake()
@@ -41,7 +42,6 @@ public class PlayerController : MonoBehaviour
         combat = GetComponent<CharacterCombat>();
 
         moveAction = playerInput.actions["Movement"];
-        lookAction = playerInput.actions["MouseLook"];
         jumpAction = playerInput.actions["Jump"];
         shootAction = playerInput.actions["Shoot"];
         actionAction = playerInput.actions["Action"];
@@ -121,5 +121,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 }

@@ -20,7 +20,7 @@ public class HungerBar : MonoBehaviour
     public static float Hunger;
     float maxHunger = 100f;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         Hunger = maxHunger;
@@ -32,7 +32,6 @@ public class HungerBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Hunger);
         Vector2 input = moveAction.ReadValue<Vector2>();
         HungerSlider.value = Hunger;
 

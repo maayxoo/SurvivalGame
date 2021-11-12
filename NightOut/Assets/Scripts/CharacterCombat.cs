@@ -22,12 +22,11 @@ public class CharacterCombat : MonoBehaviour
     public void Attack(CharacterStats targetStats)
     {
         //Debug.Log("Attack in - CharacterCombat  ");
-        if (attackCooldown <= 0f)
+        if (attackCooldown <= 0f &&targetStats!=null)
         {
             int damageDealt = Random.Range(myStats.minDamage, myStats.maxDamage);
             targetStats.TakeDamage(damageDealt);
             attackCooldown = 1 / attackSpeed;
-            Debug.Log(damageDealt + "damage dealt");
         }
     }
 }
