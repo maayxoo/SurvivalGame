@@ -12,19 +12,19 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Room.unity
+    guid: 4d23377b4cbbdcf49a32eec2f6195b69
+  - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: 6c5afed758d9dde4d96232ce7a139e63
   - enabled: 1
-    path: Assets/Scenes/SpawningHouse.unity
-    guid: 4d23377b4cbbdcf49a32eec2f6195b69
+    path: Assets/Scenes/EndGame.unity
+    guid: 106025b4713992744bb2e8999d6a3608
   - enabled: 0
     path: Assets/Scenes/prototypeScene.unity
     guid: c6f6ab81ea9d8d640bd348f071c598b6
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/EndGame.unity
-    guid: 106025b4713992744bb2e8999d6a3608
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 699ae2c7659999f4c8f501e080d2c1de, type: 2}
