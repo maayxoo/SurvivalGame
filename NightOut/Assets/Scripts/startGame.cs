@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TheNameOfYourScript : MonoBehaviour
+public class startGame : MonoBehaviour
 {
 
     void OnTriggerEnter(Collider other)
     {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
     }
 }
