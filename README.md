@@ -9,7 +9,7 @@ up the items along the way and find the magic rose that will wake him up from th
 - Click left mouse button to attack enemies
 - Press E to pick up items
 
-Scene to run: prototypeScene
+Scene to run: MainMenu
 
 # Assets used:
 - The furniture in the first room
