@@ -7,6 +7,6 @@ public class toEndGame : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(3); //loads the scene with index 3 upon collision with the trigger
     }
 }

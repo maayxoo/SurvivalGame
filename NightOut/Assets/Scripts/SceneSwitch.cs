@@ -8,6 +8,6 @@ public class SceneSwitch : MonoBehaviour
     void onTriggerEnter(Collider other)
     {
         //load end scene
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(3); //loads the scene with index 3 upon collision with the trigger
     }
 }
