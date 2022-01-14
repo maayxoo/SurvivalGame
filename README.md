@@ -28,3 +28,7 @@ https://assetstore.unity.com/packages/audio/sound-fx/classic-footstep-sfx-173668
 https://assetstore.unity.com/packages/3d/action-rpg-melee-axe-38213
 - Animations
 https://www.mixamo.com/
+- Food assets
+https://assetstore.unity.com/packages/3d/props/food/simple-foods-207032
+- Chests
+https://assetstore.unity.com/packages/3d/props/furniture/boxes-pack-32717
