@@ -21,7 +21,7 @@ public class CharacterStats : MonoBehaviour
     public float baseAttackSpeed = 2.75f;
     public virtual void Die()
     {
-        //when a character dies
+        gameOver();
     }
 
     //on awake set all the stats to their base stats
@@ -42,5 +42,10 @@ public class CharacterStats : MonoBehaviour
         {
             Die();
         }
+    }
+    
+        public void gameOver()
+    {
+        SceneManager.LoadScene(4);
     }
 }
