@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerStats : CharacterStats
 {
@@ -24,11 +26,13 @@ public class PlayerStats : CharacterStats
         currentHunger = maxHunger;//set base values
     }
 
+
     private void Update()
     {
         //set bars to current values for heatlh and hunger
         HealthSlider.value = currentHealth;
         HungerSlider.value = currentHunger;
+
 
         starveDamangeCooldown -= Time.deltaTime;//takes away current time value, once its below 0 the cooldown is over
         //if hunger is less then zero and no cooldown cause starve damage to player
@@ -57,10 +61,17 @@ public class PlayerStats : CharacterStats
         starveDamangeCooldown = starveDamageTick;//reset cooldown
     }
 
+    //switch to game over scene
+    public void gameOver()
+    {
+        SceneManager.LoadScene(4);
+    }
+
     //when a player dies
     public override void Die()
     {
         base.Die();
         //Destroy(gameObject);
+        gameOver(); //call game over function
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //This class has all the stats for the characters
 public class CharacterStats : MonoBehaviour
 {
@@ -19,9 +20,10 @@ public class CharacterStats : MonoBehaviour
 
     //default attack speed
     public float baseAttackSpeed = 2.75f;
+
     public virtual void Die()
     {
-        gameOver();
+        //gameOver();
     }
 
     //on awake set all the stats to their base stats
@@ -44,8 +46,4 @@ public class CharacterStats : MonoBehaviour
         }
     }
     
-        public void gameOver()
-    {
-        SceneManager.LoadScene(4);
-    }
 }

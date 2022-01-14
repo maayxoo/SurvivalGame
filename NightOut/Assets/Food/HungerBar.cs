@@ -26,7 +26,7 @@ public class HungerBar : MonoBehaviour
         Hunger = maxHunger;
         moveAction = playerInput.actions["Movement"];
         jumpAction = playerInput.actions["Jump"];
-
+        Update();
     }
 
     // Update is called once per frame
