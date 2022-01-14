@@ -188,20 +188,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(AttackEnemy(enemy.GetComponent<CharacterStats>(), attackDelay));
         }
         
-        Collider[] hitAidColliders = Physics.OverlapSphere(transform.position, 2f, aidLayer);
-        foreach (Collider aid in hitAidColliders)
-        {
-            if (playerStats.currentHealth > 50)
-            {
-                playerStats.currentHealth = 100;
-            }
-            else
-            {
-                playerStats.currentHealth += 50;
-            }
-            HealthPickup aidScript = aid.GetComponent<HealthPickup>();
-            aidScript.Die();
-        }
     }
 
     //delaying attack inline with animation using Ienumerator
