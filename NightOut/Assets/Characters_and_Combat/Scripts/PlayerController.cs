@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController),typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
+    //variables for various movement functions 
     [SerializeField] private float playerWalkSpeed = 2.0f;
     [SerializeField] private float playerRunSpeed = 6.0f;
 
@@ -16,30 +17,42 @@ public class PlayerController : MonoBehaviour
 
     public bool isRunning = false;
 
-    public Transform attackPoint;
-    public float attackRange = 1f;
-    public GameObject axeObject;
+    public Transform attackPoint; //point where an enemy can be in
+    public float attackRange = 1f;//range of attack
+    public GameObject axeObject;//the axe in the players hand
 
+    //layers for collision checking
     public LayerMask enemyLayers;
     public LayerMask foodLayer;
     public LayerMask weaponLayer;
 
+    //players combat class
     CharacterCombat combat;
 
-    //refences
+    //refences to other components
     private CharacterController controller;
     private Animator anim;
     private PlayerStats playerStats;
+
+    //current move speed
     private float moveSpeed;
 
-
+    //player input system
     private PlayerInput playerInput;
     private Vector3 playerVelocity;
+
+    //players current move vectory
     public Vector3 move;
+
+    //if the player is grounded true
     public bool groundedPlayer;
+
+    //camera positoning
     private Transform cameraMainTransform;
     private Camera cam;
 
+
+    //all the inputs from the player
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction shootAction;
@@ -55,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        //getting components
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         anim = GetComponentInChildren<Animator>();
@@ -63,7 +77,7 @@ public class PlayerController : MonoBehaviour
         cameraMainTransform = cam.transform;
 
         combat = GetComponent<CharacterCombat>();
-
+        //setting player inputs
         moveAction = playerInput.actions["Movement"];
         jumpAction = playerInput.actions["Jump"];
         shootAction = playerInput.actions["Shoot"];
@@ -71,15 +85,15 @@ public class PlayerController : MonoBehaviour
         
         RunStartAction = playerInput.actions["RunStart"];
         RunFinishAction = playerInput.actions["RunFinish"];
-        axeObject.SetActive(false);
+        axeObject.SetActive(false);//disabling axe as they dont start
     }
 
 
     void Update()    
     {
 
-        groundedPlayer = controller.isGrounded;
-        Vector2 input = moveAction.ReadValue<Vector2>();
+        groundedPlayer = controller.isGrounded;//check if grounded
+        Vector2 input = moveAction.ReadValue<Vector2>();//read player input
         move = new Vector3(input.x, 0, input.y);
         move = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
         move.y = 0;
@@ -104,13 +118,13 @@ public class PlayerController : MonoBehaviour
         }
         controller.Move(move * Time.deltaTime * moveSpeed);
 
-
+        //stopping the player once grounded
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
-        // Changes the height position of the player..
+        // Changes the height position of the player along with jumping animations
         if (groundedPlayer)
         {
             anim.SetBool("isJumping", false);
@@ -120,7 +134,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("isJumping", true);
                 anim.SetBool("isGrounded", false);
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);//player jump
             }
         }
 
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
 
-
+        //toggling sprint and checking if shoot and action is triggered
         if (RunStartAction.triggered)
         {
             enableSprint();
@@ -155,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
+    //player attacking enemy, checks for enemy layers in the attack point, if so it performs a combat attack
     private void Attack()
     {
         float attackDelay = 1.0f;
@@ -175,14 +189,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    //delaying attack inline with animation using Ienumerator
     IEnumerator AttackEnemy(CharacterStats enemyStats, float attackDelay)
     {
         yield return new WaitForSeconds(1.0f);
         Debug.Log("Player Attacked");
         combat.Attack(enemyStats);
     }
-
+    //action, checks all interactable layers for items and performs correct tasks
     private void Action()
     {
         Debug.Log("Action");
@@ -208,18 +222,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    //picking up weapon
     private void pickupItem(WeaponPickup weaponScript)
     {
         weaponScript.Pickup();
         playerStats.currentWeapon = weaponScript.weapon;
         axeObject.SetActive(true);
     }
+    //gizmos for reference
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
+    //enable and disable sprint
     private void enableSprint()
     {
         isRunning = true;

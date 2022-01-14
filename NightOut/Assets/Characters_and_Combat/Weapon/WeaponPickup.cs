@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//applied on weapons on the ground
 public class WeaponPickup : MonoBehaviour
 {
-    public Weapon weapon;
+    public Weapon weapon; //what weapon is the pickup associated with
 
-    // Start is called before the first frame update
+    //when picking up we want to destroy it.
     public void Pickup()
     {
-        Debug.Log("Picking up" + weapon.name);
         Destroy(gameObject);
     }
 }

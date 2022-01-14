@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class Cursorhide : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    //this hides the cursor and locks it to the middle of the screen
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
